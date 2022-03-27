@@ -40,7 +40,8 @@ const About = (props) =>{
                     </div>
 
                     <p>
-                    I am a Full-Stack Developer born in London and based in Washington DC. As an artist, I have a serious passion for creating clean and creative, dynamic user experiences. I recently attended Bloom Tech to further develop my skills and collaborate with like-minded individuals, and look forward to doing the same in the future.<br></br>
+                    I am a Full-Stack Developer born in London and based in Washington DC. As an artist, I have a serious passion for creating clean and creative, dynamic user experiences.
+                    <br></br><br></br>
                     My current goals are to help clients build professional and interactive websites, gain more experience, and build strong partnerships within the field.
                     </p>
 
