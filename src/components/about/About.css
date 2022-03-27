@@ -78,7 +78,7 @@
     }
 
     .about__content p {
-        margin: 1rem 0 1.5rem;
+        margin: 2rem 0 1.5rem;
     }
 }
 
@@ -90,8 +90,13 @@
     }
 
     .about__cards {
-        grid-template-columns: 1fr 1fr;
-        gap: 1rem;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .about__card {
+        width: 12rem;
     }
 
     .about__content {
