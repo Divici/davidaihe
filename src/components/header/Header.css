@@ -67,15 +67,20 @@ header {
 /* ---------------Media Queries  (Medium Devices) ------------------------ */
 @media screen and (max-width: 1024px) {
     header {
-        height: 68vh;
+        height: 90vh;
     }
+
+    /* .me {
+        height: 22rem;
+        border-radius: 50%;
+    } */
 }
 
 /* ---------------Media Queries  (Small Devices) ------------------------ */
 @media screen and (max-width: 600px) {
-    header {
+    /* header {
         height: 100vh;
-    }
+    } */
 
     .header__socials, .scroll__down {
         display: none;
