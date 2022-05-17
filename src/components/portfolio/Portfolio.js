@@ -11,13 +11,14 @@ const Portfolio = (props) =>{
 
             <div className="container portfolio__container">
                 {
-                    data.map(({id, image, title, github, demo}) =>{
+                    data.map(({id, image, title, github, demo, description}) =>{
                        return (
                             <article key={id} className="portfolio__item">
                                 <div className="portfolio__item-image">
                                     <img src={image} alt={title} />
                                 </div>
                                 <h3>{title}</h3>
+                                <p>{description}</p>
                                 <div className="portfolio__item-cta">
                                     <a href={github} className='btn' target='_blank' rel="noreferrer">Github</a>
                                     <a href={demo} className='btn btn-primary' target='_blank' rel="noreferrer">Live Demo</a>
