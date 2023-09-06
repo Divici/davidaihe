@@ -23,7 +23,7 @@ const About = (props) =>{
                         <article className="about__card">
                             <FaAward className="about__icon"/>
                             <h5>Experience</h5>
-                            <small>1+ Years Working</small>
+                            <small>1.5 Years Working</small>
                         </article>
 
                         <article className="about__card">
@@ -40,9 +40,11 @@ const About = (props) =>{
                     </div>
 
                     <p>
-                    I am a Full-Stack Developer born in London and based in Washington DC. As an artist, I have a serious passion for creating clean and creative, dynamic user experiences.
+                    I'm a Full Stack Software Engineer with a combined 1.5 years of experience in developing web apps that blend cutting-edge frontend design with robust backend functionality.
                     <br></br><br></br>
-                    My current goals are to help clients build professional and interactive websites, gain more experience, and build strong partnerships within the field.
+                    As an artist, I enjoy building immersive user experiences by leveraging technologies like React, TypeScript, Tailwind CSS, Java, and Spring Boot, to name a few.
+                    <br></br><br></br>
+                    I get excited about opportunities where I get to build powerful applications that effectively transform data into visually captivating representations, empowering small and large business owners alike in making well-informed decisions.
                     </p>
 
                     <a href="#contact" className="btn btn-primary">Let's Talk</a>
