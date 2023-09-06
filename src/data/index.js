@@ -29,7 +29,7 @@ const data = [
         title: 'Motorik',
         github: 'https://github.com/Divici/motorik',
         demo: 'https://motorik.vercel.app/',
-        description: 'An informational team page for semi-pro soccer club, Motoric FC, based in North Virginia.'
+        description: 'An informational team page for the semi-pro soccer club, Motoric FC, based in North Virginia.'
     },
     {
         id: 4,
