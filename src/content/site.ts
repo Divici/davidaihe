@@ -3,11 +3,11 @@ import type { Stat } from './types';
 export const site = {
   name: 'David Aihe',
   initials: 'DA',
-  role: 'Software Engineer · Applied AI',
+  role: 'Full-Stack Software Engineer · Applied AI Engineer',
   location: 'Bowie, Maryland',
   url: process.env.NEXT_PUBLIC_SITE_URL ?? 'https://david-aihe.com',
   description:
-    'David Aihe is a full-stack software engineer with four years at JPMorgan Chase building React and TypeScript platforms, now shipping agentic, RAG, and multimodal AI systems.',
+    'David Aihe is a full-stack software engineer and applied AI engineer. He spent more than three and a half years building enterprise applications at JPMorgan Chase with React, TypeScript, Java, and Spring Boot, and now ships agentic, RAG, and multimodal AI systems.',
   email: 'doa9200@gmail.com',
   github: 'https://github.com/Divici',
   linkedin: 'https://www.linkedin.com/in/david-aihe/',
@@ -24,17 +24,22 @@ export const navLinks = [
 ] as const;
 
 export const about = {
-  heading: 'Four years shipping for 30,000+ users.',
+  heading: 'Enterprise software for 30,000+ users.',
   paragraphs: [
-    'I spent nearly four years at JPMorgan Chase building and modernizing enterprise applications: reusable React and TypeScript components, Java and Spring Boot services, and the tests that let teams ship with confidence.',
+    'I spent more than three and a half years at JPMorgan Chase building and modernizing enterprise applications across the stack: Java and Spring Boot services, React and TypeScript interfaces, AWS deployments, and the tests that let teams ship with confidence.',
     'In 2026 I completed the Gauntlet AI engineering fellowship and have been building applied AI products since: multi-agent pipelines, retrieval over legacy code, voice-first desktop tools, and the evaluations that prove they work.',
-    'I care about interfaces that feel considered, code that the next engineer can read, and numbers that back up the claim.',
+    'I care about systems that hold up under load, code that the next engineer can read, and numbers that back up the claim.',
   ],
 };
 
 export const stats: Stat[] = [
-  { value: 4, suffix: ' yrs', label: 'building enterprise software at JPMorgan Chase' },
+  {
+    value: 3.5,
+    decimals: 1,
+    suffix: '+ yrs',
+    label: 'building enterprise software at JPMorgan Chase',
+  },
   { value: 30000, suffix: '+', label: 'users on the applications I supported' },
-  { value: 30, suffix: '%', label: 'faster app performance from shared React components' },
+  { value: 30, suffix: '%', label: 'faster app performance after cutting redundant calls' },
   { value: 90, suffix: '%+', label: 'test coverage on the features I owned' },
 ];

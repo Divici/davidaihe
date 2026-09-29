@@ -1,5 +1,5 @@
 import type { CSSProperties } from 'react';
-import { skillGroups } from '@/content/skills';
+import { certifications, skillGroups } from '@/content/skills';
 import { SectionHeading } from '../SectionHeading';
 
 export function Skills() {
@@ -10,7 +10,7 @@ export function Skills() {
         eyebrow="Skills"
         lead="The tools I reach for, grouped by the job they do."
       >
-        A full stack, with <em>AI</em> on top.
+        The full stack, with <em>AI</em> built in.
       </SectionHeading>
 
       <ul className="skills__grid">
@@ -27,6 +27,15 @@ export function Skills() {
           </li>
         ))}
       </ul>
+
+      <div className="certs js-scroll">
+        <h3 className="certs__title">Certification</h3>
+        <ul className="certs__list">
+          {certifications.map((name) => (
+            <li key={name}>{name}</li>
+          ))}
+        </ul>
+      </div>
     </section>
   );
 }

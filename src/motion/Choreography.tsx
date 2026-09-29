@@ -6,6 +6,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
 import { buildMotion, type Motion } from './buildMotion';
 import { useMotion } from './MotionProvider';
+import { getMotionOff } from './motionStore';
 import { ObserveScroll } from './vendor/ObserveScroll';
 import { ToggleClassBetweenTriggers } from './vendor/ToggleClassBetweenTriggers';
 import { CardTilt } from './vendor/CardTilt';
@@ -23,7 +24,10 @@ export function Choreography() {
 
   useGSAP(
     () => {
-      if (motionOff) return;
+      // During hydration React still reports the server default (motion on).
+      // The store already knows the real answer, so nothing is set up and torn
+      // down again for visitors who asked for no motion.
+      if (motionOff || getMotionOff()) return;
       const built = buildMotion();
       motion.current = built;
       ScrollTrigger.refresh();

@@ -30,14 +30,16 @@ export function Hero() {
           <div className="js-mv-3" data-motion>
             <p className="eyebrow">{site.role}</p>
             <h1 id="hero-title" className="hero__title">
-              I build the front end, then the <em>agents</em> behind it.
+              I build <span className="nowrap">full-stack</span> software and the <em>AI</em> that
+              powers it.
             </h1>
           </div>
 
           <div className="js-mv-4" data-motion>
             <p className="hero__lead">
-              I&rsquo;m {site.name}. Four years of React and TypeScript at enterprise scale, plus
-              agentic and retrieval systems shipped end to end.
+              I&rsquo;m {site.name}. I spent more than three and a half years building enterprise
+              applications at JPMorgan Chase, from Spring Boot services to React interfaces. Now I
+              ship agentic and retrieval systems end to end.
             </p>
             <div className="hero__actions">
               <a className="btn btn--primary" href="#work">
@@ -81,9 +83,9 @@ export function Hero() {
               <Image
                 className="hero__photo"
                 src={site.portrait}
-                alt={`Portrait of ${site.name}, smiling, outdoors`}
-                width={1000}
-                height={1000}
+                alt={`Portrait of ${site.name}, smiling`}
+                width={1128}
+                height={1128}
                 sizes="(min-width: 1001px) 480px, 78vw"
                 priority
               />
@@ -97,7 +99,7 @@ export function Hero() {
                 Open to new roles
               </p>
               <p className="chip chip--fact float float--slow">
-                <strong>4 yrs</strong> at JPMorgan Chase
+                <strong>3.5+ yrs</strong> at JPMorgan Chase
               </p>
             </div>
           </div>

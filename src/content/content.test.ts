@@ -2,9 +2,9 @@ import { describe, expect, it } from 'vitest';
 import { existsSync } from 'node:fs';
 import path from 'node:path';
 import { projects } from './projects';
-import { skillGroups } from './skills';
+import { certifications, skillGroups } from './skills';
 import { experience } from './experience';
-import { site, navLinks } from './site';
+import { about, site, navLinks, stats } from './site';
 
 const publicDir = path.resolve(__dirname, '../../public');
 
@@ -45,6 +45,16 @@ describe('projects', () => {
     }
   });
 
+  it('offers a download for the two desktop apps', () => {
+    for (const slug of ['jane', 'taskyard']) {
+      const project = projects.find((p) => p.slug === slug);
+      expect(project?.live?.label).toBe('Download');
+      expect(project?.live?.href).toMatch(
+        /^https:\/\/github\.com\/Divici\/[\w.-]+\/releases\/latest$/,
+      );
+    }
+  });
+
   it('has unique slugs', () => {
     expect(new Set(projects.map((p) => p.slug)).size).toBe(projects.length);
   });
@@ -52,12 +62,20 @@ describe('projects', () => {
 
 describe('skills', () => {
   it('has the four groups from the résumé', () => {
-    expect(skillGroups.map((g) => g.title)).toEqual([
+    expect(skillGroups.map((g) => g.title).sort()).toEqual([
       'AI & LLM',
-      'Frontend',
       'Backend & Data',
       'Cloud & Tools',
+      'Frontend',
     ]);
+  });
+
+  it('leads with AI and backend so the page does not read as front-end only', () => {
+    expect(skillGroups.slice(0, 2).map((g) => g.title)).toEqual(['AI & LLM', 'Backend & Data']);
+  });
+
+  it('lists the AWS certification', () => {
+    expect(certifications).toContain('AWS Certified Developer – Associate');
   });
 
   it('never lists a skill twice', () => {
@@ -67,6 +85,14 @@ describe('skills', () => {
 });
 
 describe('experience', () => {
+  it('starts with the current Sandstorm Design contract', () => {
+    expect(experience[0]).toMatchObject({
+      org: 'Sandstorm Design',
+      kind: 'contract',
+      period: 'Sep 2026 – Present',
+    });
+  });
+
   it('lists roles newest first', () => {
     const starts = experience.map((e) => e.start);
     expect([...starts].sort().reverse()).toEqual(starts);
@@ -82,6 +108,18 @@ describe('site', () => {
       '#experience',
       '#contact',
     ]);
+  });
+
+  it('presents a full-stack and applied AI engineer, not a front-end specialist', () => {
+    expect(site.role).toBe('Full-Stack Software Engineer · Applied AI Engineer');
+    expect(site.description).toMatch(/full-stack/i);
+    expect(site.description).toMatch(/applied AI/i);
+  });
+
+  it('never rounds the JPMorgan Chase tenure up to four years', () => {
+    const copy = JSON.stringify({ site, about, stats });
+    expect(copy).not.toMatch(/four years|\b4 yrs\b|\b4 years\b/i);
+    expect(stats[0]).toMatchObject({ value: 3.5, decimals: 1, suffix: '+ yrs' });
   });
 
   it('never exposes a phone number', () => {

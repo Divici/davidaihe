@@ -1,12 +1,24 @@
 import { navLinks, site } from '@/content/site';
 import { GitHubIcon, LinkedInIcon } from '../icons';
+import { Marquee } from '../Marquee';
+
+const disciplines = [
+  'Full-stack engineering',
+  'Applied AI',
+  'Agentic systems',
+  'Retrieval',
+  'Evaluations',
+  'React',
+  'TypeScript',
+  'Java',
+  'Spring Boot',
+  'AWS',
+];
 
 export function Footer() {
   return (
     <footer className="footer">
-      <p className="footer__wordmark js-flash" data-motion aria-hidden="true">
-        {site.name}
-      </p>
+      <Marquee items={disciplines} />
 
       <div className="footer__row">
         <p className="footer__note">

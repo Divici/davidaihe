@@ -9,7 +9,7 @@ export function About() {
       <div className="about__grid">
         <div>
           <SectionHeading id="about-title" eyebrow="About">
-            Four years shipping for <em>30,000+</em> users.
+            Enterprise software for <em>30,000+</em> users.
           </SectionHeading>
           <div className="about__copy">
             {about.paragraphs.map((text, i) => (
@@ -35,6 +35,7 @@ export function About() {
                       data-value={stat.value}
                       data-prefix={stat.prefix ?? ''}
                       data-suffix={stat.suffix ?? ''}
+                      data-decimals={stat.decimals ?? 0}
                     >
                       {final}
                     </span>

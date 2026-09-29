@@ -20,7 +20,8 @@ test.describe('with motion on', () => {
   test('lifts the load mask and reveals the hero', async ({ page }) => {
     await ready(page);
     const title = page.getByRole('heading', { level: 1 });
-    await expect(title).toContainText('I build the front end');
+    await expect(title).toContainText('full-stack software');
+    await expect(title).not.toContainText('front end');
     await expect(title).toBeVisible();
     await expect(page.getByAltText(/Portrait of David Aihe/)).toBeVisible();
   });
@@ -107,7 +108,7 @@ test.describe('motion kill switch', () => {
     expect(hidden).toEqual([]);
 
     const stat = page.locator('.js-count').first();
-    await expect(stat).toHaveText('4 yrs');
+    await expect(stat).toHaveText('3.5+ yrs');
   });
 
   test('remembers the choice after a reload and skips the load mask', async ({ page }) => {
@@ -145,6 +146,45 @@ test.describe('operating system reduced motion', () => {
     const contact = page.getByRole('heading', { name: "Let's build together." });
     await contact.scrollIntoViewIfNeeded();
     await expect(contact).toBeVisible();
+  });
+});
+
+test.describe('contact headline', () => {
+  test.use({ reducedMotion: 'reduce' });
+
+  for (const width of [360, 412, 600, 700, 820, 1000, 1280]) {
+    test(`stays clear of the contact cards at ${width}px`, async ({ page }) => {
+      await page.setViewportSize({ width, height: 900 });
+      await page.goto('/');
+      const box = await page.evaluate(() => {
+        const grid = document.querySelector('.contact__grid')!.getBoundingClientRect();
+        const plates = [...document.querySelectorAll('.cutin__plate')].map((p) =>
+          p.getBoundingClientRect(),
+        );
+        return {
+          gridTop: grid.top,
+          lowest: Math.max(...plates.map((r) => r.bottom)),
+          left: Math.min(...plates.map((r) => r.left)),
+          right: Math.max(...plates.map((r) => r.right)),
+          viewport: document.documentElement.clientWidth,
+        };
+      });
+      expect(box.lowest).toBeLessThanOrEqual(box.gridTop);
+      expect(box.left).toBeGreaterThanOrEqual(0);
+      expect(box.right).toBeLessThanOrEqual(box.viewport);
+    });
+  }
+});
+
+test.describe('footer', () => {
+  test('closes with the disciplines band instead of the oversized name', async ({ page }) => {
+    await ready(page);
+    await expect(page.locator('.footer__wordmark')).toHaveCount(0);
+    const band = page.locator('.footer .marquee');
+    // The band never stops moving, so scroll the page rather than wait for it to settle.
+    await page.evaluate(() => window.scrollTo(0, document.documentElement.scrollHeight));
+    await expect(band).toBeVisible();
+    await expect(band).toHaveAttribute('aria-hidden', 'true');
   });
 });
 

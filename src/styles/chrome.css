@@ -165,18 +165,48 @@ html.reduce-motion .motion-toggle__thumb {
   background: #101015;
   overflow: clip;
 }
-.footer__wordmark {
+/* Disciplines band: two copies of the list slide left by exactly one copy. */
+.marquee {
+  display: flex;
+  width: max-content;
+  border-block: 1px solid var(--line);
+  padding-block: clamp(1rem, 2.5vw, 1.75rem);
+  margin-inline: calc(var(--gutter) * -1);
+  animation: marquee calc(var(--float-duration) * 6) linear infinite;
+}
+.marquee__group {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+}
+.marquee__item {
+  display: flex;
+  align-items: center;
+  gap: clamp(1.25rem, 3vw, 2.5rem);
+  padding-right: clamp(1.25rem, 3vw, 2.5rem);
   font-family: var(--font-display), system-ui, sans-serif;
-  font-size: clamp(3.2rem, 15.5vw, 15rem);
+  font-size: clamp(1.6rem, 4.5vw, 3.4rem);
   font-weight: 800;
-  line-height: 0.9;
-  letter-spacing: -0.05em;
+  line-height: 1;
+  letter-spacing: -0.03em;
   white-space: nowrap;
-  text-align: center;
-  background: linear-gradient(100deg, var(--violet-soft), var(--violet) 55%, var(--coral));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  color: var(--violet-soft);
+}
+.marquee__item:nth-child(3n + 1) {
+  color: var(--ink);
+}
+.marquee__item::after {
+  content: '';
+  width: 0.35em;
+  height: 0.9em;
+  border-radius: 99px;
+  background: var(--coral);
+  rotate: 24deg;
+}
+@keyframes marquee {
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
 }
 .footer__row {
   display: flex;

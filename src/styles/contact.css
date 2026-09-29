@@ -6,54 +6,47 @@
 }
 
 /* cut-in ------------------------------------------------------------------ */
+/* One unit drives everything: the font size set here. Plate offsets and the
+   container height are all in em, so they scale together at every width and
+   the last plate can never reach the contact cards below. */
 .cutin {
   display: grid;
   place-items: center;
-  height: clamp(19rem, 42vw, 32rem);
-  margin-bottom: clamp(1rem, 4vw, 3rem);
+  height: 5em;
+  margin-bottom: clamp(2rem, 5vw, 4rem);
+  font-size: clamp(2.6rem, 11vw, 8.5rem);
 }
 .cutin__plate {
   grid-area: 1 / 1;
   padding: 0.12em 0.4em 0.18em;
   border-radius: 0.18em;
   font-family: var(--font-display), system-ui, sans-serif;
-  font-size: clamp(3rem, 11vw, 8.5rem);
+  font-size: 1em;
   font-weight: 800;
   /* Declared explicitly: spans miss the heading line-height rule. */
   line-height: 1;
   letter-spacing: -0.04em;
   white-space: nowrap;
 }
-/* Absolute units for the vertical offsets: % would resolve against each
-   plate's own box and stack differently sized plates on top of each other. */
+/* Vertical offsets avoid %: that would resolve against each plate's own box
+   and stack differently sized plates on top of each other. */
 .cutin__plate:nth-child(1) {
-  translate: -32% clamp(-12rem, -13vw, -6.5rem);
+  translate: -30% -1.32em;
   rotate: -7deg;
   background: var(--violet);
   color: #fff;
 }
 .cutin__plate:nth-child(2) {
-  translate: 28% -0.5rem;
+  translate: 26% -0.04em;
   rotate: 5deg;
   background: var(--ink);
   color: var(--bg);
 }
 .cutin__plate:nth-child(3) {
-  translate: -8% clamp(6.5rem, 13vw, 12rem);
+  translate: -6% 1.26em;
   rotate: -2deg;
   background: var(--coral);
   color: #1d0d05;
-}
-@media (max-width: 700px) {
-  .cutin__plate:nth-child(1) {
-    translate: -22% clamp(-12rem, -22vw, -4.5rem);
-  }
-  .cutin__plate:nth-child(2) {
-    translate: 20% -0.25rem;
-  }
-  .cutin__plate:nth-child(3) {
-    translate: -4% clamp(4.5rem, 22vw, 12rem);
-  }
 }
 
 /* Options and form -------------------------------------------------------- */

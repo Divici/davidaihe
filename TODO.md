@@ -17,6 +17,14 @@ and update `width`, `height`, and `alt` in `src/content/projects.ts`.
       placeholders for the tab icons. Wanted: captures from an iPhone or the
       iOS simulator.
 
+## Content
+
+- [ ] **LinkedIn details**: LinkedIn blocks automated reads. To pull anything
+      from the profile, open it, choose More › Save to PDF, and put the file
+      in the project root.
+- [ ] **"Open to new roles" chip** in the hero: confirm it still applies now
+      that the Sandstorm Design contract has started.
+
 ## Optional
 
 - [ ] **Jane 1.0**: add a second capture, such as the status pill while

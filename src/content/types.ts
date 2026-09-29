@@ -40,7 +40,7 @@ export type ExperienceEntry = {
   /** ISO year-month, used for ordering. */
   start: string;
   period: string;
-  kind: 'work' | 'training';
+  kind: 'work' | 'contract' | 'training';
   points: string[];
 };
 
@@ -48,5 +48,6 @@ export type Stat = {
   value: number;
   prefix?: string;
   suffix?: string;
+  decimals?: number;
   label: string;
 };

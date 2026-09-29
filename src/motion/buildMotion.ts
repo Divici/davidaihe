@@ -81,7 +81,11 @@ export function buildMotion(): Motion {
   // count-up ---------------------------------------------------------------
   gsap.utils.toArray<HTMLElement>('.js-count').forEach((el, i) => {
     const end = Number(el.dataset.value ?? 0);
-    const affix = { prefix: el.dataset.prefix, suffix: el.dataset.suffix };
+    const affix = {
+      prefix: el.dataset.prefix,
+      suffix: el.dataset.suffix,
+      decimals: Number(el.dataset.decimals ?? 0),
+    };
     const counter = { value: 0 };
     const write = () => {
       el.textContent = formatCount(counter.value, affix);

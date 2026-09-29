@@ -15,6 +15,10 @@ export const projects: Project[] = [
     ],
     stack: ['C#', '.NET 10', 'WPF', 'Parakeet-TDT', 'Ollama', 'SQLite'],
     repo: 'https://github.com/Divici/Jane1.0',
+    live: {
+      label: 'Download',
+      href: 'https://github.com/Divici/Jane1.0/releases/latest',
+    },
     layout: 'wide',
     shots: [
       {

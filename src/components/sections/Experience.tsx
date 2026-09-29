@@ -1,6 +1,13 @@
 import type { CSSProperties } from 'react';
 import { experience } from '@/content/experience';
+import type { ExperienceEntry } from '@/content/types';
 import { SectionHeading } from '../SectionHeading';
+
+const KIND_LABEL: Record<ExperienceEntry['kind'], string> = {
+  work: 'Full-time',
+  contract: 'Contract',
+  training: 'Training',
+};
 
 export function Experience() {
   return (
@@ -10,7 +17,7 @@ export function Experience() {
       aria-labelledby="experience-title"
     >
       <SectionHeading id="experience-title" eyebrow="Experience">
-        Enterprise scale first, then <em>applied AI.</em>
+        Enterprise scale, then <em>applied AI.</em>
       </SectionHeading>
 
       <div className="timeline">
@@ -26,7 +33,7 @@ export function Experience() {
               <p className="entry__org">
                 {entry.org}
                 <span className="entry__kind">
-                  {entry.kind === 'work' ? 'Full-time' : 'Training'}
+                  {KIND_LABEL[entry.kind]}
                 </span>
               </p>
               <ul className="entry__points">
