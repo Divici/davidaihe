@@ -5,7 +5,7 @@ export const site = {
   initials: 'DA',
   role: 'Software Engineer · Applied AI',
   location: 'Bowie, Maryland',
-  url: process.env.NEXT_PUBLIC_SITE_URL ?? 'https://davidaihe.vercel.app',
+  url: process.env.NEXT_PUBLIC_SITE_URL ?? 'https://david-aihe.com',
   description:
     'David Aihe is a full-stack software engineer with four years at JPMorgan Chase building React and TypeScript platforms, now shipping agentic, RAG, and multimodal AI systems.',
   email: 'doa9200@gmail.com',
