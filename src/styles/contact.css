@@ -1,0 +1,201 @@
+.contact {
+  padding-bottom: var(--section-gap);
+}
+.contact__eyebrow {
+  justify-content: center;
+}
+
+/* cut-in ------------------------------------------------------------------ */
+.cutin {
+  display: grid;
+  place-items: center;
+  height: clamp(19rem, 42vw, 32rem);
+  margin-bottom: clamp(1rem, 4vw, 3rem);
+}
+.cutin__plate {
+  grid-area: 1 / 1;
+  padding: 0.12em 0.4em 0.18em;
+  border-radius: 0.18em;
+  font-family: var(--font-display), system-ui, sans-serif;
+  font-size: clamp(3rem, 11vw, 8.5rem);
+  font-weight: 800;
+  /* Declared explicitly: spans miss the heading line-height rule. */
+  line-height: 1;
+  letter-spacing: -0.04em;
+  white-space: nowrap;
+}
+/* Absolute units for the vertical offsets: % would resolve against each
+   plate's own box and stack differently sized plates on top of each other. */
+.cutin__plate:nth-child(1) {
+  translate: -32% clamp(-12rem, -13vw, -6.5rem);
+  rotate: -7deg;
+  background: var(--violet);
+  color: #fff;
+}
+.cutin__plate:nth-child(2) {
+  translate: 28% -0.5rem;
+  rotate: 5deg;
+  background: var(--ink);
+  color: var(--bg);
+}
+.cutin__plate:nth-child(3) {
+  translate: -8% clamp(6.5rem, 13vw, 12rem);
+  rotate: -2deg;
+  background: var(--coral);
+  color: #1d0d05;
+}
+@media (max-width: 700px) {
+  .cutin__plate:nth-child(1) {
+    translate: -22% clamp(-12rem, -22vw, -4.5rem);
+  }
+  .cutin__plate:nth-child(2) {
+    translate: 20% -0.25rem;
+  }
+  .cutin__plate:nth-child(3) {
+    translate: -4% clamp(4.5rem, 22vw, 12rem);
+  }
+}
+
+/* Options and form -------------------------------------------------------- */
+.contact__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  gap: clamp(2rem, 6vw, 5rem);
+  max-width: 60rem;
+  margin-inline: auto;
+}
+.contact__options {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+.option {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 1.6rem 1.2rem;
+  border: 1px solid transparent;
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  text-align: center;
+  transition:
+    opacity var(--transition),
+    transform var(--transition),
+    background-color 0.25s ease,
+    border-color 0.25s ease;
+}
+.option:hover {
+  background: transparent;
+  border-color: var(--violet);
+}
+.option__icon {
+  color: var(--violet-soft);
+  margin-bottom: 0.3rem;
+}
+.option h3 {
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+.option__value {
+  color: var(--mute);
+  font-size: 0.95rem;
+  overflow-wrap: anywhere;
+}
+.option a {
+  margin-top: 0.5rem;
+  padding-block: 0.4rem;
+  color: var(--violet-soft);
+  font-weight: 700;
+  font-size: 0.92rem;
+  text-decoration: underline;
+  text-underline-offset: 0.25em;
+}
+.option a:hover {
+  color: var(--ink);
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+.field label {
+  font-weight: 700;
+  font-size: 0.92rem;
+}
+.field input,
+.field textarea {
+  width: 100%;
+  padding: 0.95rem 1.1rem;
+  border: 2px solid var(--line);
+  border-radius: 0.7rem;
+  background: color-mix(in srgb, var(--surface) 60%, transparent);
+  color: var(--ink);
+  font: inherit;
+  resize: vertical;
+  transition: border-color 0.2s ease;
+}
+.field textarea {
+  min-height: 9rem;
+}
+.field input:hover,
+.field textarea:hover {
+  border-color: var(--violet-deep);
+}
+.field input:focus-visible,
+.field textarea:focus-visible {
+  outline: none;
+  border-color: var(--violet-soft);
+  box-shadow: 0 0 0 3px rgb(122 96 255 / 0.35);
+}
+.field [aria-invalid='true'] {
+  border-color: var(--bad);
+}
+.field__error {
+  color: var(--bad);
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+.field--trap {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+.contact-form__foot {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1rem;
+}
+.form-note {
+  padding: 0.8rem 1rem;
+  border-left: 3px solid;
+  border-radius: 0 0.5rem 0.5rem 0;
+  background: var(--surface);
+  font-size: 0.95rem;
+}
+.form-note--ok {
+  border-color: var(--ok);
+}
+.form-note--bad {
+  border-color: var(--bad);
+}
+.form-note a {
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 1000px) {
+  .contact__grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

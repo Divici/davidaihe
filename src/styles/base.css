@@ -1,0 +1,293 @@
+/* Violet Signal: charcoal ground, saturated violet shapes, one warm accent. */
+:root {
+  color-scheme: dark;
+
+  --bg: #15151b;
+  --surface: #1e1e27;
+  --surface-2: #272733;
+  --line: #34344a;
+  --ink: #f4f3fa;
+  --mute: #b1afc6;
+  --violet: #7a60ff;
+  --violet-soft: #b3a4ff;
+  --violet-deep: #3b2a9c;
+  --coral: #ff7a4d;
+  --ok: #4ade80;
+  --bad: #ff8f8f;
+
+  --gutter: clamp(1.25rem, 5vw, 5rem);
+  --measure: 72rem;
+  --radius: 1rem;
+  --radius-lg: 1.75rem;
+  --section-gap: clamp(5rem, 12vw, 10rem);
+
+  /* Motion budget, tuned for this project. Names come from the pattern library. */
+  --transition: 0.7s cubic-bezier(0.16, 0.84, 0.28, 1);
+  --card-transition: 1.6s;
+  --float-duration: 7s;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 2rem;
+  background: var(--bg);
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body), system-ui, sans-serif;
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  overflow-x: clip;
+  -webkit-font-smoothing: antialiased;
+}
+
+main,
+.footer {
+  position: relative;
+  z-index: 1;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display), system-ui, sans-serif;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+em {
+  font-style: normal;
+}
+
+::selection {
+  background: var(--violet);
+  color: #fff;
+}
+
+:focus-visible {
+  outline: 3px solid var(--coral);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.skip-link {
+  position: fixed;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 100;
+  padding: 0.7rem 1.1rem;
+  border-radius: 0.6rem;
+  background: var(--ink);
+  color: var(--bg);
+  font-weight: 700;
+  transform: translateY(-200%);
+}
+.skip-link:focus {
+  transform: none;
+}
+
+/* Shared pieces ----------------------------------------------------------- */
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--violet-soft);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  min-height: 3rem;
+  padding: 0.7rem 1.4rem;
+  border: 1.5px solid transparent;
+  border-radius: 0.7rem;
+  font-weight: 700;
+  font-size: 0.98rem;
+  line-height: 1.2;
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease,
+    translate 0.2s ease;
+}
+.btn:hover {
+  translate: 0 -2px;
+}
+.btn:active {
+  translate: 0 0;
+}
+.btn--primary {
+  background: var(--violet);
+  color: #fff;
+}
+.btn--primary:hover {
+  background: #8c75ff;
+}
+.btn--ghost {
+  border-color: var(--line);
+  color: var(--ink);
+}
+.btn--ghost:hover {
+  border-color: var(--violet-soft);
+}
+.btn:disabled {
+  opacity: 0.6;
+  cursor: progress;
+  translate: none;
+}
+html.reduce-motion .btn {
+  transition: none;
+  translate: none;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.chips li {
+  padding: 0.3rem 0.75rem;
+  border: 1px solid var(--line);
+  border-radius: 99px;
+  background: color-mix(in srgb, var(--surface) 70%, transparent);
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 0.78rem;
+  color: var(--ink);
+}
+
+.socials {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+.socials a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding-block: 0.4rem;
+  color: var(--mute);
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+.socials a:hover {
+  color: var(--ink);
+}
+
+/* Sections ---------------------------------------------------------------- */
+.section {
+  width: min(100% - 2 * var(--gutter), var(--measure));
+  margin-inline: auto;
+  padding-block: calc(var(--section-gap) / 2);
+}
+
+.section-head {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 46rem;
+  margin-bottom: clamp(2.5rem, 6vw, 4.5rem);
+}
+.section-head__title {
+  font-size: clamp(2.1rem, 5.4vw, 3.9rem);
+  font-weight: 800;
+}
+.section-head__title em,
+.hero__title em {
+  text-decoration: underline;
+  text-decoration-color: var(--coral);
+  text-decoration-thickness: 0.09em;
+  text-underline-offset: 0.12em;
+}
+.section-head__lead {
+  color: var(--mute);
+  font-size: 1.15rem;
+  max-width: 38rem;
+}
+
+/* Ambient depth layer, carried through the whole page ----------------------- */
+.ambient {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+.ambient__pill {
+  position: absolute;
+  border-radius: 999px;
+  background: linear-gradient(180deg, var(--violet), var(--violet-deep));
+  rotate: 24deg;
+  will-change: transform;
+}
+.js-amb-1 {
+  width: 9rem;
+  height: 34rem;
+  left: -4rem;
+  top: 70vh;
+  opacity: 0.16;
+}
+.js-amb-2 {
+  width: 5rem;
+  height: 22rem;
+  right: 4vw;
+  top: 120vh;
+  opacity: 0.2;
+}
+.js-amb-3 {
+  width: 3rem;
+  height: 15rem;
+  right: 16vw;
+  top: 210vh;
+  opacity: 0.14;
+  background: linear-gradient(180deg, var(--coral), #a3401f);
+}
+@media (max-width: 700px) {
+  .ambient__pill {
+    scale: 0.6;
+  }
+}
+
+/* line reveal, driven by the same class toggle as css-reveal */
+.js-line {
+  transform: scaleY(var(--set-opacity));
+  transform-origin: top;
+  transition: transform calc(var(--card-transition) * 1.2) cubic-bezier(0.16, 0.84, 0.28, 1);
+}
+.js-line.is-show {
+  transform: scaleY(1);
+}
+
+/* The stagger delay outlives a 0s duration, so the kill switch clears it too. */
+html.reduce-motion .js-scroll {
+  transition-delay: 0s;
+}
+@media (prefers-reduced-motion: reduce) {
+  html:not(.js) .js-scroll {
+    transition-delay: 0s;
+  }
+}
+
+/* Oversized from-states (cut-in starts at 2.1x) must never widen the page. */
+main {
+  overflow-x: clip;
+}

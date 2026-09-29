@@ -1,0 +1,288 @@
+.projects__list {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(4rem, 10vw, 8rem);
+}
+
+.project {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+  align-items: center;
+  gap: clamp(2rem, 5vw, 4.5rem);
+}
+.project--flipped {
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+}
+.project--flipped .project__media {
+  order: 2;
+}
+
+.project__body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+.project__index {
+  color: var(--coral);
+}
+.project__name {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 800;
+}
+.project__tagline {
+  font-size: 1.2rem;
+  font-weight: 500;
+  line-height: 1.4;
+}
+.project__summary {
+  color: var(--mute);
+}
+.project__highlights {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-block: 0.4rem;
+}
+.project__highlights li {
+  position: relative;
+  padding-left: 1.5rem;
+  font-size: 0.98rem;
+}
+.project__highlights li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  width: 0.55rem;
+  height: 0.55rem;
+  border-radius: 2px;
+  background: var(--violet);
+  rotate: 24deg;
+}
+.project__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  margin-top: 0.8rem;
+}
+
+/* Stage: the framed surface the screenshots sit on ------------------------- */
+.project__media {
+  min-width: 0;
+}
+.project__stage {
+  display: grid;
+  place-items: center;
+  aspect-ratio: 16 / 11;
+  padding: clamp(0.75rem, 2vw, 1.5rem);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background:
+    radial-gradient(circle at 85% 10%, rgb(122 96 255 / 0.55), transparent 55%),
+    radial-gradient(circle at 5% 100%, rgb(255 122 77 / 0.22), transparent 45%), var(--surface);
+  box-shadow: 0 2rem 4rem rgb(0 0 0 / 0.35);
+}
+
+.shots {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(0.6rem, 2vw, 1.25rem);
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+}
+.shots__img {
+  min-width: 0;
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border-radius: 0.6rem;
+  box-shadow: 0 1rem 2.5rem rgb(0 0 0 / 0.45);
+}
+
+/* Small window captures overlap like windows on a desktop. */
+.shots--widgets .shots__img {
+  flex: 1 1 0;
+  border-radius: 1rem;
+}
+.shots--widgets .shots__img:nth-child(1) {
+  flex-grow: 1.35;
+}
+.shots--widgets .shots__img:nth-child(2) {
+  translate: 0 -6%;
+}
+.shots--widgets .shots__img:nth-child(3) {
+  translate: 0 6%;
+}
+
+/* Portrait captures sit in a phone outline. */
+.project--phone .project__stage {
+  aspect-ratio: 16 / 12.5;
+}
+.shots--phone .shots__img {
+  flex: 0 1 auto;
+  height: 100%;
+  border: 0.4rem solid #0b0b10;
+  border-radius: 1.6rem;
+  background: #0b0b10;
+}
+.shots--phone .shots__img:nth-child(2) {
+  translate: 0 5%;
+}
+.shots--phone .shots__img:nth-child(1) {
+  translate: 0 -3%;
+}
+
+/* holo-tilt --------------------------------------------------------------- */
+@property --mouse_x {
+  syntax: '<number>';
+  inherits: true;
+  initial-value: 0;
+}
+@property --mouse_y {
+  syntax: '<number>';
+  inherits: true;
+  initial-value: 0;
+}
+@property --distance {
+  syntax: '<number>';
+  inherits: true;
+  initial-value: 0;
+}
+
+.js-cardtilt {
+  --mouse_x: 0;
+  --mouse_y: 0;
+  --mouse_x_abs: 0;
+  --mouse_y_abs: 0;
+  --distance: 0;
+  --deg: 0deg;
+  --opacity: 0;
+  --pointer-events: all;
+
+  pointer-events: var(--pointer-events); /* kill switch disables tilt here */
+  perspective: 90vw;
+}
+.js-cardtilt.hovering {
+  touch-action: none;
+  z-index: 5;
+}
+
+.js-cardtilt_rotate {
+  position: relative;
+  transform-style: preserve-3d;
+  will-change: transform;
+  overflow: hidden;
+}
+
+/* Specular sheen: a highlight parked under the cursor. */
+.js-cardtilt_flare {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  pointer-events: none;
+  opacity: calc(var(--opacity) * 0.55);
+  mix-blend-mode: overlay;
+  filter: brightness(0.8);
+  transition: opacity 0.9s ease;
+  background: radial-gradient(
+    farthest-corner circle at calc((var(--mouse_x) * 50 + 50) * 1%)
+      calc((var(--mouse_y) * 50 + 50) * 1%),
+    hsl(0 0% 100%) 0%,
+    hsl(0 0% 100% / 0.55) 34%,
+    #15151b 100%
+  );
+}
+
+/* Diffraction: angle from --deg, intensity from --distance. */
+.js-cardtilt_holo {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  pointer-events: none;
+  opacity: calc(var(--opacity) * var(--distance) * 0.7);
+  mix-blend-mode: color-dodge;
+  background: repeating-linear-gradient(
+    var(--deg),
+    rgb(255 122 77 / 0.3) 0%,
+    rgb(179 164 255 / 0.26) 9%,
+    rgb(122 96 255 / 0.28) 18%,
+    rgb(70 130 220 / 0.28) 27%,
+    rgb(200 90 190 / 0.26) 36%,
+    rgb(255 122 77 / 0.3) 45%
+  );
+  background-size: 220% 220%;
+  background-position: calc(var(--mouse_x) * 42% + 50%) calc(var(--mouse_y) * 42% + 50%);
+}
+
+/* self-demo-card: the card performs its own tilt as it scrolls into view. */
+@keyframes variableAnime {
+  0% {
+    --mouse_x: 0;
+    --mouse_y: 0;
+    --distance: 0;
+  }
+  25% {
+    --mouse_x: 1;
+    --mouse_y: -1;
+    --distance: 0.9;
+  }
+  70% {
+    --mouse_x: -1;
+    --mouse_y: 1;
+    --distance: 0.9;
+  }
+  100% {
+    --mouse_x: 0;
+    --mouse_y: 0;
+    --distance: 0;
+  }
+}
+@keyframes cardAnim {
+  0% {
+    transform: rotateX(0deg) rotateY(0deg);
+  }
+  25% {
+    transform: rotateX(5deg) rotateY(-7deg);
+  }
+  70% {
+    transform: rotateX(-7deg) rotateY(8deg);
+  }
+  100% {
+    transform: rotateX(0deg) rotateY(0deg);
+  }
+}
+@keyframes opacityActive {
+  0%,
+  100% {
+    opacity: 0;
+  }
+  30%,
+  70% {
+    opacity: 0.6;
+  }
+}
+
+.js-cardtilt.is-active:not(.hovering) {
+  animation: variableAnime var(--card-transition) ease-in-out;
+}
+.js-cardtilt.is-active:not(.hovering) .js-cardtilt_rotate {
+  animation: cardAnim var(--card-transition) ease-in-out;
+}
+.js-cardtilt.is-active:not(.hovering) .js-cardtilt_flare,
+.js-cardtilt.is-active:not(.hovering) .js-cardtilt_holo {
+  animation: opacityActive var(--card-transition) ease-in-out;
+}
+
+@media (max-width: 1000px) {
+  .project,
+  .project--flipped {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .project--flipped .project__media {
+    order: 0;
+  }
+}

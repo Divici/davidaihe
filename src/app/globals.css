@@ -1,0 +1,21 @@
+@import 'tailwindcss';
+@import '../motion/vendor/motion-variables.css';
+@import '../styles/base.css';
+@import '../styles/hero.css';
+@import '../styles/sections.css';
+@import '../styles/projects.css';
+@import '../styles/contact.css';
+@import '../styles/chrome.css';
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-line: var(--line);
+  --color-ink: var(--ink);
+  --color-mute: var(--mute);
+  --color-violet: var(--violet);
+  --color-coral: var(--coral);
+  --font-sans: var(--font-body);
+  --font-display: var(--font-display);
+  --font-mono: var(--font-mono);
+}

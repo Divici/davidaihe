@@ -1,0 +1,63 @@
+import type { SkillGroup } from './types';
+
+export const skillGroups: SkillGroup[] = [
+  {
+    title: 'AI & LLM',
+    blurb: 'Agents, retrieval, and the evaluations that keep them honest.',
+    skills: [
+      'Claude',
+      'OpenAI',
+      'Gemini',
+      'LangGraph',
+      'Claude Agent SDK',
+      'RAG',
+      'Embeddings',
+      'Pinecone',
+      'Langfuse',
+      'Tool use',
+      'Knowledge graphs',
+      'Evaluations',
+    ],
+  },
+  {
+    title: 'Frontend',
+    blurb: 'Component systems that stay fast and accessible as they grow.',
+    skills: [
+      'React',
+      'Next.js',
+      'TypeScript',
+      'JavaScript',
+      'React Native',
+      'Redux',
+      'Tailwind CSS',
+      'HTML5',
+      'CSS3',
+      'GSAP',
+      'Jest',
+      'Cypress',
+    ],
+  },
+  {
+    title: 'Backend & Data',
+    blurb: 'Services and schemas built to be depended on.',
+    skills: ['Java', 'Spring Boot', 'Node.js', 'REST APIs', 'SQL', 'PostgreSQL', 'SQLite'],
+  },
+  {
+    title: 'Cloud & Tools',
+    blurb: 'Deployments, monitoring, and the workflow around them.',
+    skills: [
+      'AWS ECS',
+      'AWS Glue',
+      'DynamoDB',
+      'CloudWatch',
+      'Docker',
+      'Git',
+      'Firebase',
+      'Vercel',
+      'Railway',
+      'Inngest',
+      'Twilio',
+      'BlazeMeter',
+    ],
+  },
+];

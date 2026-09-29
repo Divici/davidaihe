@@ -1,0 +1,196 @@
+/* About ------------------------------------------------------------------- */
+.about__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  align-items: center;
+  gap: clamp(2.5rem, 6vw, 5rem);
+}
+.about .section-head {
+  margin-bottom: 2rem;
+}
+.about__copy {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+  max-width: 36rem;
+  color: var(--mute);
+}
+.about__copy p:first-child {
+  color: var(--ink);
+  font-size: 1.15rem;
+}
+
+/* The skewed band is the one loud block in the middle of the page. */
+.about__band {
+  padding: clamp(3rem, 7vw, 5rem) clamp(1.5rem, 4vw, 3rem);
+  border-radius: var(--radius-lg);
+  background: linear-gradient(135deg, #8a72ff, var(--violet) 40%, #5a42e0);
+  color: #fff;
+  transform-origin: center;
+  rotate: -3deg;
+}
+.stats {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(1.5rem, 3vw, 2.5rem) clamp(1rem, 3vw, 2rem);
+}
+.stat {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+/* The term comes first in the markup; the figure leads visually. */
+.stat__value {
+  order: -1;
+}
+.stat__value {
+  font-family: var(--font-display), system-ui, sans-serif;
+  font-size: clamp(2.2rem, 4.6vw, 3.4rem);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  font-variant-numeric: tabular-nums;
+}
+.stat__label {
+  font-size: 0.92rem;
+  line-height: 1.4;
+  color: rgb(255 255 255 / 0.88);
+}
+
+/* Skills ------------------------------------------------------------------ */
+.skills__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.25rem;
+}
+.skill-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  padding: clamp(1.4rem, 3vw, 2.2rem);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: color-mix(in srgb, var(--surface) 88%, transparent);
+  transition:
+    opacity var(--transition),
+    transform var(--transition),
+    border-color 0.25s ease;
+}
+.skill-card:hover {
+  border-color: var(--violet);
+}
+.skill-card__title {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+.skill-card__blurb {
+  color: var(--mute);
+  margin-bottom: 0.8rem;
+}
+
+/* Experience -------------------------------------------------------------- */
+.timeline {
+  position: relative;
+  display: grid;
+  grid-template-columns: 2rem minmax(0, 1fr);
+  gap: clamp(0.75rem, 3vw, 2.5rem);
+}
+.timeline__rail {
+  position: relative;
+  justify-self: center;
+  width: 3px;
+  border-radius: 3px;
+  background: var(--line);
+}
+.timeline__fill {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(180deg, var(--coral), var(--violet) 30%, var(--violet-deep));
+}
+.timeline__list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+.entry {
+  position: relative;
+  padding: clamp(1.4rem, 3vw, 2.2rem);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: color-mix(in srgb, var(--surface) 88%, transparent);
+}
+.entry__dot {
+  position: absolute;
+  top: 2.2rem;
+  /* half the rail column plus the gap, so the dot sits on the line */
+  left: calc(-1rem - clamp(0.75rem, 3vw, 2.5rem));
+  width: 1rem;
+  height: 1rem;
+  border: 3px solid var(--bg);
+  border-radius: 50%;
+  background: var(--violet);
+  translate: -50% 0;
+}
+.entry__dot--training {
+  background: var(--coral);
+}
+.entry__period {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--violet-soft);
+}
+.entry__role {
+  margin-top: 0.5rem;
+  font-size: clamp(1.4rem, 2.6vw, 1.85rem);
+  font-weight: 700;
+}
+.entry__org {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 0.3rem;
+  color: var(--mute);
+  font-weight: 500;
+}
+.entry__kind {
+  padding: 0.15rem 0.6rem;
+  border: 1px solid var(--line);
+  border-radius: 99px;
+  font-size: 0.75rem;
+}
+.entry__points {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  margin-top: 1.2rem;
+  max-width: 48rem;
+}
+.entry__points li {
+  position: relative;
+  padding-left: 1.4rem;
+  color: var(--mute);
+}
+.entry__points li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.72em;
+  width: 0.6rem;
+  height: 2px;
+  background: var(--violet-soft);
+}
+
+@media (max-width: 1000px) {
+  .about__grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+@media (max-width: 700px) {
+  .skills__grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

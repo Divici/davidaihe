@@ -1,70 +1,71 @@
-# Getting Started with Create React App
+# davidaihe
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Portfolio site for David Aihe, software engineer.
 
-## Available Scripts
+One statically rendered page: hero, selected work, about, skills, experience,
+and contact. Built with Next.js (App Router), TypeScript, Tailwind CSS v4, and
+GSAP.
 
-In the project directory, you can run:
+## Run it
 
-### `npm start`
+```bash
+npm install
+npm run dev        # http://localhost:3000
+```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Scripts
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+| Command | What it does |
+|---|---|
+| `npm run dev` | Development server |
+| `npm run build` | Production build |
+| `npm run start` | Serve the production build |
+| `npm run lint` | ESLint |
+| `npm run typecheck` | TypeScript, no emit |
+| `npm test` | Unit and component tests (Vitest) |
+| `npm run test:e2e` | End-to-end tests on desktop and phone (Playwright) |
 
-### `npm test`
+## Where things live
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+| Path | Contents |
+|---|---|
+| `src/content/` | Everything the page says: projects, skills, experience, site details |
+| `src/components/sections/` | One component per page section |
+| `src/motion/` | Motion provider, load mask, and `buildMotion()`, which owns all GSAP setup |
+| `src/motion/vendor/` | Pattern library files, copied unchanged apart from an `export` line |
+| `src/styles/` | Styles, split by area |
+| `public/projects/` | Project screenshots |
+| `tests/e2e/` | Playwright specs |
 
-### `npm run build`
+## Editing content
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Add or change a project in `src/content/projects.ts`. Put its screenshots in
+`public/projects/<slug>/` and list them under `shots` with their real pixel
+size. `layout` controls the staging: `wide` for one landscape capture,
+`widgets` for several small windows, `phone` for portrait captures.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+`npm test` fails if a listed screenshot is missing from disk.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Motion
 
-### `npm run eject`
+Every scroll trigger shares one trigger point (`TOGGLE` in
+`src/motion/buildMotion.ts`). Animated elements carry `data-motion`.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+The switch in the header and dock turns all motion off, resets every element
+to its finished state, and remembers the choice. The operating system's
+reduced-motion setting is honoured on first paint.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Configuration
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+All optional. Defaults are in the source.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+| Variable | Purpose |
+|---|---|
+| `NEXT_PUBLIC_SITE_URL` | Canonical URL used in metadata and the sitemap |
+| `NEXT_PUBLIC_EMAILJS_SERVICE_ID` | EmailJS service for the contact form |
+| `NEXT_PUBLIC_EMAILJS_TEMPLATE_ID` | EmailJS template |
+| `NEXT_PUBLIC_EMAILJS_PUBLIC_KEY` | EmailJS public key |
 
-## Learn More
+## Deployment
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Vercel builds every push. `vercel.json` sets the framework to Next.js.
