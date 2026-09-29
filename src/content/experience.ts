@@ -8,9 +8,9 @@ export const experience: ExperienceEntry[] = [
     period: 'Sep 2026 – Present',
     kind: 'contract',
     points: [
-      'Developing Next.js experiences for client web applications and CMS-driven sites, working with designers and developers to deliver production updates.',
-      'Building reusable Sitefinity widgets and React components that turn design and content requirements into configurable experiences.',
-      'Supporting CMS modernization and upgrades across multiple client sites, validating changes through release.',
+      'Delivering client web applications and CMS-driven sites on Next.js, taking changes from requirements through to production release.',
+      'Building reusable Sitefinity widgets and React components that connect CMS content and configuration to the application.',
+      'Supporting CMS platform modernization and upgrades across multiple client sites, adapting implementations and validating each change through release.',
     ],
   },
   {

@@ -96,7 +96,7 @@ export function Hero() {
             <div className="js-mv-5" data-motion>
               <p className="chip chip--status float">
                 <span className="chip__dot" aria-hidden="true" />
-                Open to new roles
+                Open to work
               </p>
               <p className="chip chip--fact float float--slow">
                 <strong>3.5+ yrs</strong> at JPMorgan Chase

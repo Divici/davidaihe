@@ -22,8 +22,8 @@ and update `width`, `height`, and `alt` in `src/content/projects.ts`.
 - [ ] **LinkedIn details**: LinkedIn blocks automated reads. To pull anything
       from the profile, open it, choose More › Save to PDF, and put the file
       in the project root.
-- [ ] **"Open to new roles" chip** in the hero: confirm it still applies now
-      that the Sandstorm Design contract has started.
+- [ ] **Sandstorm Design entry**: if the contract grows to include API,
+      .NET, or data work, add a bullet for it in `src/content/experience.ts`.
 
 ## Optional
 
